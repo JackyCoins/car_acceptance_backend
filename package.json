@@ -1,0 +1,13 @@
+{
+  "name": "car_acceptance_backend",
+  "version": "1.0.0",
+  "description": "The node application for the car acceptance",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JackyCoins/car_acceptance_backend.git"
+  },
+  "author": "Rusanov Nikita",
+  "license": "ISC"
+}
