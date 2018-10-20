@@ -6,13 +6,15 @@ const Koa = require('koa');
 const logger = require('./logger');
 //endregion
 
+//region Import api
+const api = require('./api');
+//endregion
+
 //region Create the app
 const app = new Koa();
 //endregion
 
-app.use(async ctx => {
-  ctx.body = 'Hello world';
-});
+app.use(api.orders.getOrders);
 
 app.listen(8080);
 
