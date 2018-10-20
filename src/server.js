@@ -4,7 +4,7 @@ const port = 8080;
 
 const requestHandler = (request, response) => {
   console.log(request.url)
-  response.end('Hello world!!!');
+  response.end('Hello world');
 };
 
 const server = http.createServer(requestHandler);

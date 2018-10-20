@@ -2,14 +2,20 @@
 ###Production
 ```
 docker build -t car_acceptance_backend .
-docker run --rm -it -p 8080:8080 car_acceptance_backend -e "NODE_ENV=production"
+docker run --rm -it -p 8080:8080 -e "NODE_ENV=production" car_acceptance_backend
 ```
 
 ###Develop
 ```
 docker build -t car_acceptance_backend .
 docker run --rm -it -p 8080:8080 -v $(pwd):/app car_acceptance_backend bash
-root@id:/app# nodemon src/server.js
+nodemon src/server.js
+```
+or
+```
+docker swarm init
+docker-compose up
+# docker stack deploy -c docker-compose.yml car_acceptance_backend
 ```
 
 
