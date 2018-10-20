@@ -1,20 +1,19 @@
 //region Import libraries
-const http = require('http');
+const Koa = require('koa');
 //endregion
 
-const port = 8080;
+//region Create the app
+const app = new Koa();
+//endregion
 
-const requestHandler = (request, response) => {
-  console.log(request.url);
-  response.end('Hello world');
-};
-
-const server = http.createServer(requestHandler);
-
-server.listen(port, err => {
-  if (err) {
-    return console.log('something bad happened', err);
-  }
-
-  console.log(`server is listening on ${port}`);
+app.use(async ctx => {
+  ctx.body = 'Hello world';
 });
+
+app.listen(8080);
+
+app.on('error', err => {
+  console.error('server error', err);
+});
+
+console.log('The app is listening to port:8080');
