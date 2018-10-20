@@ -18,4 +18,9 @@ docker-compose up
 # docker stack deploy -c docker-compose.yml car_acceptance_backend
 ```
 
+To entrance to a running container
+```
+docker exec -it name_of_container /bin/bash
+```
+
 

@@ -2,6 +2,10 @@
 const Koa = require('koa');
 //endregion
 
+//region Import logger
+const logger = require('./logger');
+//endregion
+
 //region Create the app
 const app = new Koa();
 //endregion
@@ -13,7 +17,7 @@ app.use(async ctx => {
 app.listen(8080);
 
 app.on('error', err => {
-  console.error('server error', err);
+  logger.error(err);
 });
 
-console.log('The app is listening to port:8080');
+logger.info('The app has started on port 8080');
