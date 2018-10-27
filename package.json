@@ -15,6 +15,7 @@
     "eslint-config-prettier": "^3.1.0"
   },
   "dependencies": {
+    "config": "^2.0.1",
     "date-fns": "^1.29.0",
     "koa": "^2.5.3",
     "koa-router": "^7.4.0",

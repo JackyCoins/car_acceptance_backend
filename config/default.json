@@ -1,0 +1,7 @@
+{
+  "Customer": {
+    "apiConfig": {
+      "port": 8080
+    }
+  }
+}

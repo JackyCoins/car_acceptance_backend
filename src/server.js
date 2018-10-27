@@ -1,6 +1,7 @@
 //region Import libraries
 const Koa = require('koa');
 const Router = require('koa-router');
+const config = require('config');
 //endregion
 
 //region Import logger
@@ -21,6 +22,8 @@ const app = new Koa();
 
 const router = new Router();
 
+const apiConfig = config.get('Customer.apiConfig');
+
 router.get('/', api.orders.getOrders);
 
 app.use(middleware.errorHandler);
@@ -29,4 +32,4 @@ app.use(middleware.logTimeHandler);
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(8080, () => logger.info('The app has started on port 8080'));
+app.listen(apiConfig.port, () => logger.info(`The app has started on port ${apiConfig.port}`));

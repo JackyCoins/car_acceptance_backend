@@ -2,14 +2,14 @@ FROM node:carbon
 
 WORKDIR /app
 
+ADD *.js* ./
+
 RUN npm install -g nodemon
 
-ADD package*.json ./
+RUN npm install --only=production
 
-RUN npm install
-
-COPY src /app
+COPY . /app
 
 EXPOSE 8080
 
-CMD ["nodemon", "server.js"]
+CMD ["nodemon", "src/server.js"]
