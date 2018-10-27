@@ -6,7 +6,7 @@ COPY *.js* ./
 
 RUN npm install -g nodemon
 
-RUN npm install --only=production
+RUN npm install
 
 COPY . /app
 
