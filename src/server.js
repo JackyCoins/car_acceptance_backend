@@ -5,7 +5,7 @@ const config = require('config');
 //endregion
 
 //region Import logger
-const logger = require('./logger');
+const logger = require('./utils/logger');
 //endregion
 
 //region Import middleware
@@ -13,7 +13,7 @@ const middleware = require('./middleware');
 //endregion
 
 //region Import api
-const api = require('./api');
+const initializeRoutes = require('./routes');
 //endregion
 
 //region Create the app
@@ -22,13 +22,9 @@ const app = new Koa();
 
 const router = new Router();
 
+initializeRoutes(router);
+
 const apiConfig = config.get('Customer.apiConfig');
-
-router.get('/', async ctx => {
-  ctx.body = 'Car acceptance backend'
-});
-
-router.get('/api/orders/', api.orders.getOrders);
 
 app.use(middleware.errorHandler);
 

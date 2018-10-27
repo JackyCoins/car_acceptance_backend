@@ -3,7 +3,7 @@
  * */
 
 //region Import logger
-const logger = require('../logger');
+const logger = require('../utils/logger');
 //endregion
 
 //region logTimeHandler
