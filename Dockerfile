@@ -2,7 +2,7 @@ FROM node:carbon
 
 WORKDIR /app
 
-ADD *.js* ./
+COPY *.js* ./
 
 RUN npm install -g nodemon
 

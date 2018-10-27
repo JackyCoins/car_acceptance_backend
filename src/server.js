@@ -24,7 +24,11 @@ const router = new Router();
 
 const apiConfig = config.get('Customer.apiConfig');
 
-router.get('/', api.orders.getOrders);
+router.get('/', async ctx => {
+  ctx.body = 'Car acceptance backend'
+});
+
+router.get('/api/orders/', api.orders.getOrders);
 
 app.use(middleware.errorHandler);
 
@@ -32,4 +36,18 @@ app.use(middleware.logTimeHandler);
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(apiConfig.port, () => logger.info(`The app has started on port ${apiConfig.port}`));
+let server;
+
+try {
+  if (!server) {
+    server = app.listen(apiConfig.port, () =>
+      logger.info(`The app has started on port ${apiConfig.port}`)
+    );
+  }
+} catch (error) {
+  logger.error(error);
+}
+
+//region Export
+module.exports = server;
+//endregion
