@@ -14,10 +14,9 @@ Run to test:
 docker-comopse up --build test
 ```
 
-
-To entrance to a running container
+Test the application with `autocannon`:
 ```
-docker exec -it name_of_container /bin/bash
+docker-compose up --build autocannon
 ```
 
 

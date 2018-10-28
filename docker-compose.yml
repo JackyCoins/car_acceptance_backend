@@ -8,14 +8,8 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ".:/app"
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
+    network_mode: bridge
+    command: nodemon src/server.js
     ports:
       - "8080:8080"
   test:
@@ -23,6 +17,13 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    ports:
-      - "8080:8080"
     command: npm test
+  autocannon:
+    image: car_acceptance_backend
+    network_mode: bridge
+    links:
+      - web
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: npx autocannon -c 100 -d 5 web:8080/

@@ -19,7 +19,7 @@ describe('routes: index', () => {
       done();
     });
 
-    it('it should return text "Orders"', done => {
+    it('it should return json with Orders', done => {
       chai
         .request(server)
         .get('/api/orders/')
@@ -27,10 +27,9 @@ describe('routes: index', () => {
           should.not.exist(error);
 
           response.status.should.eql(200);
-          response.type.should.eql('text/plain');
-          response.text.should.eql('Orders');
-          // response.body.status.should.equal('success');
-          // response.body.message.should.eql('Orders');
+          response.type.should.eql('application/json');
+
+          response.body.should.eql({ orders: []});
 
           done();
         });

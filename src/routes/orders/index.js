@@ -5,7 +5,7 @@
  * @param {object} ctx
  * */
 const getOrders = async ctx => {
-  ctx.body = 'Orders';
+  ctx.body = { orders: [] };
 };
 //endregion
 
