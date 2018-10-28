@@ -12,17 +12,17 @@ const server = require('../../server');
 
 chai.use(chaiHttp);
 
-describe('routes: orders', () => {
-  describe('GET /api/orders/', () => {
+describe('routes: masters', () => {
+  describe('GET /api/masters/', () => {
     after(done => {
       server.close();
       done();
     });
 
-    it('it should return json with Orders', done => {
+    it('it should return json with Masters', done => {
       chai
         .request(server)
-        .get('/api/orders/')
+        .get('/api/masters/')
         .end((error, response) => {
           should.not.exist(error);
 

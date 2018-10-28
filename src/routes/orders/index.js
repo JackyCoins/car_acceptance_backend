@@ -1,11 +1,12 @@
 //region Handlers
 /**
  * @function getOrders
+ * @private
  *
  * @param {object} ctx
  * */
 const getOrders = async ctx => {
-  ctx.body = { orders: [] };
+  ctx.body = { results: [] };
 };
 //endregion
 

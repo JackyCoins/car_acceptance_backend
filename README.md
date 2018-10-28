@@ -11,7 +11,7 @@ docker-compose up --build web
 ```
 Run to test:
 ```
-docker-comopse up --build test
+docker-compose up --build test
 ```
 
 Test the application with `autocannon`:
