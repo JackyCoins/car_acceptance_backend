@@ -3,6 +3,10 @@ version: "3"
 services:
   web:
     image: car_acceptance_backend
+    container_name: web
+    restart: always
+    links:
+      - mongo
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -12,6 +16,14 @@ services:
     command: nodemon src/server.js
     ports:
       - "8080:8080"
+  mongo:
+    container_name: mongo
+    image: mongo
+    network_mode: bridge
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
   test:
     image: car_acceptance_backend
     build:

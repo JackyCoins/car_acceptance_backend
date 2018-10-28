@@ -7,7 +7,7 @@ docker run --rm -it -p 8080:8080 -e "NODE_ENV=production" car_acceptance_backend
 ### Develop
 Run to develop the application:
 ```
-docker-compose up --build web
+docker-compose up --build web mongo
 ```
 Run to test:
 ```
