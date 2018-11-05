@@ -7,26 +7,29 @@ const { getAutoIncrementPlugin } = require('../index');
 //endregion
 
 //region clientSchema
-const clientSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true
+const clientSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    patrName: String,
   },
-  lastName: {
-    type: String,
-    required: true
-  },
-  patrName: String
-});
+  { timestamps: true, collection: 'clients' }
+);
 
 clientSchema.plugin(getAutoIncrementPlugin().plugin, {
-  model: "Client",
-  field: "clientId"
+  model: 'Client',
+  field: 'clientId',
 });
 //endregion
 
 //region Client
-const Client = mongoose.model("Client", clientSchema);
+const Client = mongoose.model('Client', clientSchema);
 //endregion
 
 //region Export

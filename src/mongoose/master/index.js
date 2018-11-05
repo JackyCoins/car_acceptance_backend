@@ -7,21 +7,24 @@ const { getAutoIncrementPlugin } = require('../index');
 //endregion
 
 //region masterSchema
-const masterSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true
+const masterSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    patrName: String,
   },
-  lastName: {
-    type: String,
-    required: true
-  },
-  patrName: String
-});
+  { timestamps: true, collection: 'masters' }
+);
 
 masterSchema.plugin(getAutoIncrementPlugin().plugin, {
-  model: "Master",
-  field: "masterId"
+  model: 'Master',
+  field: 'masterId',
 });
 //endregion
 
@@ -32,4 +35,3 @@ const Master = mongoose.model('Master', masterSchema);
 //region Export
 module.exports = Master;
 //endregion
-

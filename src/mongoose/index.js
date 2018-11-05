@@ -11,7 +11,7 @@ autoIncrement.initialize(mongoose.connection);
 
 //region connectToMongo
 const connectToMongo = () => {
-  mongoose.connect("mongodb://localhost:27017/interactive_acceptance");
+  mongoose.connect("mongodb://mongo:27017");
 
   const db = mongoose.connection;
 
