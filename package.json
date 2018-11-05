@@ -25,6 +25,8 @@
     "date-fns": "^1.29.0",
     "koa": "^2.5.3",
     "koa-router": "^7.4.0",
+    "mongoose": "^5.3.7",
+    "mongoose-auto-increment": "^5.0.1",
     "winston": "^3.1.0"
   }
 }

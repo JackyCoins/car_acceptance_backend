@@ -4,6 +4,10 @@ const Router = require('koa-router');
 const config = require('config');
 //endregion
 
+//region Import connectToMongo
+const { connectToMongo } = require('./mongoose');
+//endregion
+
 //region Import logger
 const logger = require('./utils/logger');
 //endregion
@@ -21,17 +25,20 @@ const app = new Koa();
 //endregion
 
 const router = new Router();
-
-initializeRoutes(router);
-
 const apiConfig = config.get('Customer.apiConfig');
 
+connectToMongo();
+initializeRoutes(router);
+
+//region Set middlewares
 app.use(middleware.errorHandler);
 
 app.use(middleware.logTimeHandler);
 
 app.use(router.routes()).use(router.allowedMethods());
+//endregion
 
+//region Create server
 let server;
 
 try {
@@ -43,6 +50,7 @@ try {
 } catch (error) {
   logger.error(error);
 }
+//endregion
 
 //region Export
 module.exports = server;

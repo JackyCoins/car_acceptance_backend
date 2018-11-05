@@ -2,6 +2,24 @@
   "Customer": {
     "apiConfig": {
       "port": 8080
-    }
+    },
+    "statusesOfOrder": [
+      {
+        "id": 0,
+        "title": "В ожидании"
+      },
+      {
+        "id": 1,
+        "title": "В процессе"
+      },
+      {
+        "id": 2,
+        "title": "Отменен"
+      },
+      {
+        "id": 3,
+        "title": "Завершено"
+      }
+    ]
   }
 }
