@@ -5,6 +5,8 @@ services:
     image: car_acceptance_backend
     container_name: web
     restart: always
+    depends_on:
+      - mongo
     links:
       - mongo
     build:
@@ -20,6 +22,7 @@ services:
     container_name: mongo
     image: mongo
     network_mode: bridge
+    user: root
     volumes:
       - ./data:/data/db
     ports:

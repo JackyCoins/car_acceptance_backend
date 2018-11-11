@@ -12,7 +12,7 @@ const { getAutoIncrementPlugin } = require('../index');
 //endregion
 
 //region statusesOfOrder
-const statusesOfOrder = config.get('Consumer.statusesOfOrder');
+const statusesOfOrder = config.get('Customer.statusesOfOrder');
 //endregion
 
 //region Validators

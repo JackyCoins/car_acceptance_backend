@@ -1,3 +1,7 @@
+//region Import models
+const Order = require('../../mongoose/order');
+//endregion
+
 //region Handlers
 /**
  * @function getOrders
@@ -6,7 +10,8 @@
  * @param {object} ctx
  * */
 const getOrders = async ctx => {
-  ctx.body = { results: [] };
+  const orders = await Order.find();
+  ctx.body = { results: orders };
 };
 //endregion
 

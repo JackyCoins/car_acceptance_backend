@@ -2,6 +2,10 @@
  * @module errorHandler
  * */
 
+//region Import utils
+const logger = require('../utils/logger');
+//endregion
+
 //region errorHandler
 /**
  * @function errorHandler
