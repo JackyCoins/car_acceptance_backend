@@ -76,7 +76,7 @@ const updateOrder = async ctx => {
       ctx.body = err;
     }
 
-    Object.assign(order, ctx.body).save((err, order) => {
+    Object.assign(order, ctx.request.body).save((err, order) => {
       if (err) {
         ctx.body = err;
       } else {

@@ -80,7 +80,7 @@ const updateClient = async ctx => {
       ctx.body = err;
     }
 
-    Object.assign(client, ctx.body).save((err, client) => {
+    Object.assign(client, ctx.request.body).save((err, client) => {
       if (err) {
         ctx.body = err;
       } else {

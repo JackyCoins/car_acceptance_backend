@@ -24,7 +24,6 @@ describe('routes: orders', () => {
         .request(server)
         .get('/api/orders/')
         .end((error, response) => {
-          console.log('response', response);
           should.not.exist(error);
 
           response.status.should.eql(200);

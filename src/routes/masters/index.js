@@ -80,7 +80,7 @@ const updateMaster = async ctx => {
       ctx.body = err;
     }
 
-    Object.assign(master, ctx.body).save((err, master) => {
+    Object.assign(master, ctx.request.body).save((err, master) => {
       if (err) {
         ctx.body = err;
       } else {

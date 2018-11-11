@@ -2,6 +2,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const config = require('config');
+const bodyParser = require('koa-bodyparser');
 //endregion
 
 //region Import connectToMongo
@@ -31,6 +32,8 @@ connectToMongo();
 initializeRoutes(router);
 
 //region Set middlewares
+app.use(bodyParser());
+
 app.use(middleware.errorHandler);
 
 app.use(middleware.logTimeHandler);

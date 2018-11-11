@@ -20,6 +20,7 @@ describe('routes: masters', () => {
     });
 
     it('it should return json with Masters', done => {
+      this.timeout(10000);
       chai
         .request(server)
         .get('/api/masters/')

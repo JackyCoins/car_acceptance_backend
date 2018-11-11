@@ -80,7 +80,7 @@ const updateCar = async ctx => {
       ctx.body = err;
     }
 
-    Object.assign(car, ctx.body).save((err, car) => {
+    Object.assign(car, ctx.request.body).save((err, car) => {
       if (err) {
         ctx.body = err;
       } else {
