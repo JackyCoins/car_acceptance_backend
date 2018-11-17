@@ -6,6 +6,10 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 //endregion
 
+//region Import models
+const Master = require('../../mongoose/master');
+//endregion
+
 //region Import routes
 const server = require('../../server');
 //endregion
@@ -13,27 +17,30 @@ const server = require('../../server');
 chai.use(chaiHttp);
 
 describe('routes: masters', () => {
-  describe('GET /api/masters/', () => {
-    after(done => {
-      server.close();
+  beforeEach(done => {
+    Master.remove({}, err => {
       done();
     });
+  });
 
-    it('it should return json with Masters', done => {
-      this.timeout(10000);
-      chai
-        .request(server)
-        .get('/api/masters/')
-        .end((error, response) => {
-          should.not.exist(error);
+  after(done => {
+    server.close();
+    done();
+  });
 
-          response.status.should.eql(200);
-          response.type.should.eql('application/json');
+  it('GET /api/masters/', done => {
+    chai
+      .request(server)
+      .get('/api/masters/')
+      .end((error, response) => {
+        should.not.exist(error);
 
-          response.body.should.eql({ results: [] });
+        response.status.should.eql(200);
+        response.type.should.eql('application/json');
 
-          done();
-        });
-    });
+        response.body.should.eql({ results: [] });
+
+        done();
+      });
   });
 });

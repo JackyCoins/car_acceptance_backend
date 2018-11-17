@@ -6,6 +6,10 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 //endregion
 
+//region Import models
+const Order = require('../../mongoose/order');
+//endregion
+
 //region Import routes
 const server = require('../../server');
 //endregion
@@ -13,26 +17,30 @@ const server = require('../../server');
 chai.use(chaiHttp);
 
 describe('routes: orders', () => {
-  describe('GET /api/orders/', () => {
-    after(done => {
-      server.close();
+  beforeEach(done => {
+    Order.remove({}, err => {
       done();
     });
+  });
 
-    it('it should return json with Orders', done => {
-      chai
-        .request(server)
-        .get('/api/orders/')
-        .end((error, response) => {
-          should.not.exist(error);
+  after(done => {
+    server.close();
+    done();
+  });
 
-          response.status.should.eql(200);
-          response.type.should.eql('application/json');
+  it('GET /api/orders/', done => {
+    chai
+      .request(server)
+      .get('/api/orders/')
+      .end((error, response) => {
+        should.not.exist(error);
 
-          response.body.should.eql({ results: [] });
+        response.status.should.eql(200);
+        response.type.should.eql('application/json');
 
-          done();
-        });
-    });
+        response.body.should.eql({ results: [] });
+
+        done();
+      });
   });
 });

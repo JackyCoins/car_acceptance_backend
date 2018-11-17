@@ -3,7 +3,9 @@ process.env.NODE_ENV = 'test';
 //region Import libraries
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const mongoose = require('mongoose');
+//endregion
+
+//region Import models
 const Client = require('../../mongoose/client');
 //endregion
 
@@ -22,24 +24,25 @@ describe('routes: clients', () => {
     });
   });
 
-  describe('GET /api/clients', () => {
-    it('it should return all clients', done => {
-      this.timeout(10000);
+  after(done => {
+    server.close();
+    done();
+  });
 
-      chai
-        .request(server)
-        .get('/api/clients')
-        .end((err, res) => {
-          should.not.exist(err);
+  it('GET /api/clients', done => {
+    chai
+      .request(server)
+      .get('/api/clients')
+      .end((err, res) => {
+        should.not.exist(err);
 
-          res.should.have.status(200);
+        res.should.have.status(200);
 
-          res.type.should.eql('application/json');
-          res.body.should.eql({ results: [] });
+        res.type.should.eql('application/json');
+        res.body.should.eql({ results: [] });
 
-          done();
-        });
-    });
+        done();
+      });
   });
 });
 //endregion
