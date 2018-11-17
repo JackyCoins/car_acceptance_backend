@@ -28,19 +28,21 @@ describe('routes: orders', () => {
     done();
   });
 
-  it('GET /api/orders/', done => {
-    chai
-      .request(server)
-      .get('/api/orders/')
-      .end((error, response) => {
-        should.not.exist(error);
+  describe('GET /api/orders/', () => {
+    it('it should return all orders', done => {
+      chai
+        .request(server)
+        .get('/api/orders/')
+        .end((error, response) => {
+          should.not.exist(error);
 
-        response.status.should.eql(200);
-        response.type.should.eql('application/json');
+          response.status.should.eql(200);
+          response.type.should.eql('application/json');
 
-        response.body.should.eql({ results: [] });
+          response.body.should.eql({ results: [] });
 
-        done();
-      });
+          done();
+        });
+    });
   });
 });

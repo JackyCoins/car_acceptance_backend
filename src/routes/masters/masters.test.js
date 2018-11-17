@@ -28,19 +28,21 @@ describe('routes: masters', () => {
     done();
   });
 
-  it('GET /api/masters/', done => {
-    chai
-      .request(server)
-      .get('/api/masters/')
-      .end((error, response) => {
-        should.not.exist(error);
+  describe('GET /api/masters/', () => {
+    it('it should return all masters', done => {
+      chai
+        .request(server)
+        .get('/api/masters/')
+        .end((error, response) => {
+          should.not.exist(error);
 
-        response.status.should.eql(200);
-        response.type.should.eql('application/json');
+          response.status.should.eql(200);
+          response.type.should.eql('application/json');
 
-        response.body.should.eql({ results: [] });
+          response.body.should.eql({ results: [] });
 
-        done();
-      });
+          done();
+        });
+    });
   });
 });

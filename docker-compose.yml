@@ -41,7 +41,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    command: npm test
+    command: sh -c 'npm test'
   autocannon:
     image: car_acceptance_backend
     network_mode: bridge

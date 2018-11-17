@@ -2,6 +2,10 @@
  * @module clients
  * */
 
+//region Import utils
+const logger = require('../../utils/logger');
+//endregion
+
 //region Import models
 const Client = require('../../mongoose/client');
 //endregion
@@ -27,13 +31,14 @@ const getClients = async ctx => {
 const postClient = async ctx => {
   const client = new Client(ctx.request.body);
 
-  client.save((err, client) => {
-    if (err) {
-      ctx.body = err;
-    } else {
-      ctx.body = client;
-    }
-  });
+  try {
+    ctx.body = await client.save();
+    ctx.status = 200;
+  } catch (error) {
+    logger.error(error);
+    ctx.body = error;
+    ctx.status = 400;
+  }
 };
 
 /**
@@ -43,13 +48,13 @@ const postClient = async ctx => {
  * @param {object} ctx
  * */
 const getClient = async ctx => {
-  Client.findById(ctx.params.id, (err, client) => {
-    if (err) {
-      ctx.body = err;
-    }
-
-    ctx.body = client;
-  });
+  try {
+    ctx.body = await Client.findById(ctx.params.id);
+    ctx.status = 200;
+  } catch (error) {
+    logger.error(error);
+    ctx.status = 404;
+  }
 };
 
 /**
@@ -59,13 +64,12 @@ const getClient = async ctx => {
  * @param {object} ctx
  * */
 const deleteClient = async ctx => {
-  Client.remove({ _id: ctx.params.id }, (err, client) => {
-    if (err) {
-      ctx.body = err;
-    }
-
-    ctx.body = client;
-  });
+  try {
+    ctx.body = await Client.remove({ _id: ctx.params.id });
+  } catch (error) {
+    logger.error(error);
+    ctx.body = error;
+  }
 };
 
 /**
@@ -75,19 +79,17 @@ const deleteClient = async ctx => {
  * @param {object} ctx
  * */
 const updateClient = async ctx => {
-  Client.findById(ctx.params.id, (err, client) => {
-    if (err) {
-      ctx.body = err;
-    }
+  try {
+    const client = await Client.findById(ctx.params.id)
 
-    Object.assign(client, ctx.request.body).save((err, client) => {
-      if (err) {
-        ctx.body = err;
-      } else {
-        ctx.body = client;
-      }
-    });
-  });
+    const updatedClient = Object.assign(client, ctx.request.body);
+
+    ctx.body = await updatedClient.save();
+    ctx.status = 200;
+  } catch(error) {
+    logger.error(error);
+    ctx.body = error;
+  }
 };
 //endregion
 
