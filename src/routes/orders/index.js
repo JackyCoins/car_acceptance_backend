@@ -1,90 +1,13 @@
+/**
+ * @module orders
+ * */
+
 //region Import models
-const Order = require('../../mongoose/order');
+const createRoute = require('../../utils/createRoute');
 //endregion
 
-//region Handlers
-/**
- * @function getOrders
- * @private
- *
- * @param {object} ctx
- * */
-const getOrders = async ctx => {
-  const orders = await Order.find();
-  ctx.body = { results: orders };
-};
-
-/**
- * @function postOrder
- * @private
- *
- * @param {object} ctx
- * */
-const postOrder = async ctx => {
-  const order = new Order(ctx.request.body);
-
-  order.save((err, order) => {
-    if (err) {
-      ctx.body = err;
-    } else {
-      ctx.body = order;
-    }
-  });
-};
-
-/**
- * @function getOrder
- * @private
- *
- * @param {object} ctx
- * */
-const getOrder = async ctx => {
-  Order.findById(ctx.params.id, (err, order) => {
-    if (err) {
-      ctx.body = err;
-    }
-
-    ctx.body = order;
-  });
-};
-
-/**
- * @function deleteOrder
- * @private
- *
- * @param {object} ctx
- * */
-const deleteOrder = async ctx => {
-  Order.remove({ _id: ctx.params.id }, (err, order) => {
-    if (err) {
-      ctx.body = err;
-    }
-
-    ctx.body = order;
-  });
-};
-
-/**
- * @function updateOrder
- * @private
- *
- * @param {object} ctx
- * */
-const updateOrder = async ctx => {
-  Order.findById(ctx.params.id, (err, order) => {
-    if (err) {
-      ctx.body = err;
-    }
-
-    Object.assign(order, ctx.request.body).save((err, order) => {
-      if (err) {
-        ctx.body = err;
-      } else {
-        ctx.body = order;
-      }
-    });
-  });
-};
+//region Import models
+const Order = require('../../mongoose/order');
 //endregion
 
 //region initializeOrdersRoutes
@@ -95,11 +18,11 @@ const updateOrder = async ctx => {
  * */
 const initializeOrdersRoutes = router => {
   router
-    .get('/api/orders/', getOrders)
-    .post('/api/orders/', postOrder)
-    .get('/api/orders/:id', getOrder)
-    .delete('/api/orders/:id', deleteOrder)
-    .put('/api/orders/:id', updateOrder);
+    .get('/api/orders/', createRoute('getList', Order))
+    .post('/api/orders/', createRoute('postItem', Order))
+    .get('/api/orders/:id', createRoute('getItem', Order))
+    .delete('/api/orders/:id', createRoute('deleteItem', Order))
+    .put('/api/orders/:id', createRoute('updateItem', Order));
 };
 //endregion
 
