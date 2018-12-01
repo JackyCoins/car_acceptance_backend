@@ -1,5 +1,5 @@
 //region Import libraries
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 //endregion
 
 //region Import plugins
@@ -7,7 +7,7 @@ const { getAutoIncrementPlugin } = require('../index');
 //endregion
 
 //region masterSchema
-const masterSchema = new mongoose.Schema(
+const masterSchema: Schema = new Schema(
   {
     firstName: {
       type: String,
@@ -29,7 +29,7 @@ masterSchema.plugin(getAutoIncrementPlugin().plugin, {
 //endregion
 
 //region Master
-const Master = mongoose.model('Master', masterSchema);
+const Master = model('Master', masterSchema);
 //endregion
 
 //region Export

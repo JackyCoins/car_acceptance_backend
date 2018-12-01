@@ -2,17 +2,22 @@
  * @module createRoute
  * */
 
+//region Import libraries
+import { Context } from 'koa';
+import { Model } from 'mongoose';
+//endregion
+
 //region Import utils
-  const logger = require('../logger');
-  //endregion
+const logger = require('../logger');
+//endregion
 
 //region Handlers
-const handleGetList = Model => async ctx => {
+const handleGetList = (Model: Model<any>) => async (ctx: Context) => {
   const items = await Model.find();
   ctx.body = { results: items };
 };
 
-const handleGetItem = Model => async ctx => {
+const handleGetItem = (Model: Model<any>) => async (ctx: Context) => {
   try {
     ctx.body = await Model.findById(ctx.params.id);
     ctx.status = 200;
@@ -22,7 +27,7 @@ const handleGetItem = Model => async ctx => {
   }
 };
 
-const handlePostItem = Model => async ctx => {
+const handlePostItem = (Model: Model<any>) => async (ctx: Context) => {
   const item = new Model(ctx.request.body);
 
   try {
@@ -35,7 +40,7 @@ const handlePostItem = Model => async ctx => {
   }
 };
 
-const handleDeleteItem = Model => async ctx => {
+const handleDeleteItem = (Model: Model<any>) => async (ctx: Context) => {
   try {
     ctx.body = await Model.remove({ _id: ctx.params.id });
   } catch (error) {
@@ -44,15 +49,15 @@ const handleDeleteItem = Model => async ctx => {
   }
 };
 
-const handlePutItem = Model => async ctx => {
+const handlePutItem = (Model: Model<any>) => async (ctx: Context) => {
   try {
-    const item = await Model.findById(ctx.params.id)
+    const item = await Model.findById(ctx.params.id);
 
     const updatedItem = Object.assign(item, ctx.request.body);
 
     ctx.body = await updatedItem.save();
     ctx.status = 200;
-  } catch(error) {
+  } catch (error) {
     logger.error(error);
     ctx.body = error;
   }
@@ -60,11 +65,11 @@ const handlePutItem = Model => async ctx => {
 //endregion
 
 //region createRoute
-  /**
-   * @function createRoute
-   * @description Create route(get, post, etc.)
-   * */
-const createRoute = (type = 'get', Model) => {
+/**
+ * @function createRoute
+ * @description Create route(get, post, etc.)
+ * */
+const createRoute = (type = 'get', Model: Model<any>) => {
   switch (type) {
     case 'getList': {
       return handleGetList(Model);

@@ -3,7 +3,7 @@
  * */
 
 //region Import utils
-const createRoute = require('../../utils/createRoute');
+const createRoute = require('../../utils/createRoute/index');
 //endregion
 
 //region Import models

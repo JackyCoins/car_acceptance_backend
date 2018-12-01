@@ -15,7 +15,7 @@ services:
     volumes:
       - ".:/app"
     network_mode: bridge
-    command: nodemon src/server.js
+    command: nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts
     ports:
       - "8080:8080"
   mongo:

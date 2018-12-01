@@ -3,11 +3,11 @@
  * */
 
 //region Import models
-const createRoute = require('../../utils/createRoute');
+const createRoute = require('../../utils/createRoute/index');
 //endregion
 
 //region Import models
-const Master = require('../../mongoose/master');
+const Master = require('../../mongoose/master/index');
 //endregion
 
 //region initializeMastersRoutes

@@ -2,7 +2,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const config = require('config');
-const bodyParser = require('koa-bodyparser');
+const bodyParser = require('koa-body');
 //endregion
 
 //region Import connectToMongo

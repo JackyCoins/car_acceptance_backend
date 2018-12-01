@@ -7,7 +7,7 @@ const chaiHttp = require('chai-http');
 //endregion
 
 //region Import models
-const Master = require('../../mongoose/master');
+const Master = require('../../mongoose/master/index');
 //endregion
 
 //region Import routes
