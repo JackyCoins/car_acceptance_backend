@@ -4,6 +4,7 @@
   "description": "The node application for the car acceptance",
   "main": "index.js",
   "scripts": {
+    "start": "src/server.js",
     "test": "mocha ./src/**/*.test.js"
   },
   "repository": {
