@@ -7,6 +7,7 @@ const errorHandler = require('./errorHandler');
 const logTimeHandler = require('./logTimeHandler');
 //endregion
 
+// @ts-ignore
 const middleware = {
   errorHandler,
   logTimeHandler

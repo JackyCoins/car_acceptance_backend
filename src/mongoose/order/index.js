@@ -8,7 +8,7 @@ const { defaultEquipment, defaultDamage } = require('./defaultData');
 //endregion
 
 //region Import plugins
-const { getAutoIncrementPlugin } = require('../index');
+const { getAutoIncrementPlugin } = require('..');
 //endregion
 
 //region statusesOfOrder

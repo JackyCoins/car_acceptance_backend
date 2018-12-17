@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
+    "strict": true,
     "module": "commonjs",
     "target": "es2017",
     "noImplicitAny": true,
     "outDir": "./dist",
-    "sourceMap": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "sourceMap": true
   },
   "include": [
     "./src/**/*"

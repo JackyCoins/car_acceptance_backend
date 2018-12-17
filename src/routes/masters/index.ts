@@ -2,7 +2,11 @@
  * @module masters
  * */
 
-//region Import models
+//region Import types
+import Router = require('koa-router');
+//endregion
+
+//region Import utils
 const createRoute = require('../../utils/createRoute/index');
 //endregion
 
@@ -16,7 +20,7 @@ const Master = require('../../mongoose/master/index');
  *
  * @param {object} router
  * */
-const initializeMastersRoutes = router => {
+const initializeMastersRoutes = (router: Router) => {
   router
     .get('/api/masters/', createRoute('getList', Master))
     .post('/api/masters/', createRoute('postItem', Master))

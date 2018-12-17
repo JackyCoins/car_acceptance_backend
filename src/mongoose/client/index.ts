@@ -1,13 +1,17 @@
+//region Import types
+import { Schema, model } from 'mongoose';
+//endregion
+
 //region Import libraries
 const mongoose = require('mongoose');
 //endregion
 
 //region Import plugins
-const { getAutoIncrementPlugin } = require('../index');
+const { getAutoIncrementPlugin } = require('..');
 //endregion
 
 //region clientSchema
-const clientSchema = new mongoose.Schema(
+const clientSchema: Schema = new mongoose.Schema(
   {
     firstName: {
       type: String,

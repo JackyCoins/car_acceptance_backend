@@ -8,12 +8,17 @@ const { format } = require('date-fns');
 const path = require('path');
 //endregion
 
+//region Import types
+import { Logger } from 'winston';
+import {TransformableInfo} from 'logform';
+//endregion
+
 const specialFormat = printf(
-  info => `${format(info.timestamp, 'HH:mm DD.MM.YYYY')} ${info.level}: ${info.message}`
+  (info: TransformableInfo) => `${format(info.timestamp, 'HH:mm DD.MM.YYYY')} ${info.level}: ${info.message}`
 );
 
 //region Create logger
-const logger = createLogger({
+const logger: Logger = createLogger({
   level: 'info',
   format: combine(label({ label: 'Hello world!' }), timestamp(), specialFormat),
   transports: [

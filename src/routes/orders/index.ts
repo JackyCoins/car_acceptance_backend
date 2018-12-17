@@ -2,6 +2,10 @@
  * @module orders
  * */
 
+//region Import types
+import Router = require('koa-router');
+//endregion
+
 //region Import models
 const createRoute = require('../../utils/createRoute/index');
 //endregion
@@ -16,7 +20,7 @@ const Order = require('../../mongoose/order');
  *
  * @param {object} router
  * */
-const initializeOrdersRoutes = router => {
+const initializeOrdersRoutes = (router: Router) => {
   router
     .get('/api/orders/', createRoute('getList', Order))
     .post('/api/orders/', createRoute('postItem', Order))

@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 //endregion
 
 //region Import plugins
-const { getAutoIncrementPlugin } = require('../index');
+const { getAutoIncrementPlugin } = require('..');
 //endregion
 
 //region masterSchema

@@ -2,6 +2,10 @@
  * @module cars
  * */
 
+//region Import types
+import Router = require('koa-router');
+//endregion
+
 //region Import utils
 const createRoute = require('../../utils/createRoute/index');
 //endregion
@@ -16,7 +20,7 @@ const Car = require('../../mongoose/car');
  *
  * @param {object} router
  * */
-const initializeCarsRoutes = router => {
+const initializeCarsRoutes = (router: Router) => {
   router
     .get('/api/cars/', createRoute('getList', Car))
     .post('/api/cars/', createRoute('postItem', Car))

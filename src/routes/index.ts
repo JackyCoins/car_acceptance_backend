@@ -1,3 +1,7 @@
+//region Import types
+import Router = require('koa-router');
+//endregion
+
 //region Import handlers
 const initializeOrdersRoutes = require('./orders');
 const initializeMastersRoutes = require('./masters');
@@ -6,7 +10,7 @@ const initializeCarRoutes = require('./cars');
 //endregion
 
 //region initializeRoutes
-const initializeRoutes = router => {
+const initializeRoutes = (router: Router) => {
   router.get('/', async ctx => {
     ctx.body = 'Car acceptance backend'
   });

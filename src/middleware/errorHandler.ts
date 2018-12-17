@@ -2,15 +2,20 @@
  * @module errorHandler
  * */
 
+//region Import types
+  import { Logger } from 'winston';
+  import { Context } from 'koa';
+//endregion
+
 //region Import utils
-const logger = require('../utils/logger');
+const logger: Logger = require('../utils/logger');
 //endregion
 
 //region errorHandler
 /**
  * @function errorHandler
  * */
-const errorHandler = async (ctx, next) => {
+const errorHandler = async (ctx: Context, next: Function) => {
   try {
     await next();
   } catch (error) {

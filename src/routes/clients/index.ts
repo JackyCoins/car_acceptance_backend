@@ -2,6 +2,10 @@
  * @module clients
  * */
 
+//region Import types
+import Router = require('koa-router');
+//endregion
+
 //region Import utils
 const createRoute = require('../../utils/createRoute/index');
 //endregion
@@ -16,7 +20,7 @@ const Client = require('../../mongoose/client');
  *
  * @param {object} router
  * */
-const initializeClientsRoutes = router => {
+const initializeClientsRoutes = (router: Router) => {
   router
     .get('/api/clients/', createRoute('getList', Client))
     .post('/api/clients/', createRoute('postItem', Client))

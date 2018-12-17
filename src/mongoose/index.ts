@@ -1,10 +1,14 @@
+//region Import types
+import { Logger } from 'winston';
+//endregion
+
 //region Import libraries
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-auto-increment");
 //endregion
 
 //region Import logger
-const logger = require('../utils/logger');
+const logger: Logger = require('../utils/logger');
 //endregion
 
 autoIncrement.initialize(mongoose.connection);
