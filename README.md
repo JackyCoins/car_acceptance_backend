@@ -1,4 +1,5 @@
 ## Launch docker image
+
 ### Production
 ```
 docker build -t car_acceptance_backend .
@@ -21,6 +22,16 @@ docker-compose up --build test
 Test the application with `autocannon`:
 ```
 docker-compose up --build autocannon
+```
+
+### Deploy
+The first time:
+```
+chmod +x ./bin/deploy.sh
+```
+
+```
+./bin/deploy
 ```
 
 

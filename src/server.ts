@@ -14,6 +14,7 @@ const logger = require('./utils/logger');
 //endregion
 
 //region Import middleware
+// @ts-ignore
 const middleware = require('./middleware');
 //endregion
 

@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    image: car_acceptance_backend
+    image: rusanovnd/car_acceptance_backend:latest
     container_name: web
     restart: always
     depends_on:
@@ -32,7 +32,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       MONGO_INITDB_DATABASE: car_acceptance
   test:
-    image: car_acceptance_backend
+    image: rusanovnd/car_acceptance_backend:latest
     depends_on:
       - mongo
     links:
@@ -43,7 +43,7 @@ services:
       dockerfile: ./Dockerfile
     command: sh -c 'npm test'
   autocannon:
-    image: car_acceptance_backend
+    image: rusanovnd/car_acceptance_backend:latest
     network_mode: bridge
     links:
       - web
