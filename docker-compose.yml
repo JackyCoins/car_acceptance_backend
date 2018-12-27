@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  web:
-    image: rusanovnd/car_acceptance_backend:latest
-    container_name: web
+  web-dev:
+    image: $IP_SERVER:$PORT_REGISTRY_SERVER/car_acceptance_backend:latest
+    container_name: car_acceptance_backend--dev
     restart: always
     depends_on:
       - mongo
@@ -15,7 +15,24 @@ services:
     volumes:
       - ".:/app"
     network_mode: bridge
-    command: nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts
+    command: nodemon --watch 'src/**/*' -e ts,tsx --exec npm run start:dev
+    ports:
+      - "8080:8080"
+  web-prod:
+    image: $IP_SERVER:$PORT_REGISTRY_SERVER/car_acceptance_backend:latest
+    container_name: car_acceptance_backend--prod
+    restart: always
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ".:/app"
+    network_mode: bridge
+    command: npm run start:prod
     ports:
       - "8080:8080"
   mongo:
@@ -32,7 +49,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       MONGO_INITDB_DATABASE: car_acceptance
   test:
-    image: rusanovnd/car_acceptance_backend:latest
+    image: $IP_SERVER:$PORT_REGISTRY_SERVER/car_acceptance_backend:latest
     depends_on:
       - mongo
     links:
@@ -43,10 +60,10 @@ services:
       dockerfile: ./Dockerfile
     command: sh -c 'npm test'
   autocannon:
-    image: rusanovnd/car_acceptance_backend:latest
+    image: $IP_SERVER:$PORT_REGISTRY_SERVER/car_acceptance_backend:latest
     network_mode: bridge
     links:
-      - web
+      - web-dev
     build:
       context: .
       dockerfile: ./Dockerfile

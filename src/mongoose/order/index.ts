@@ -1,10 +1,14 @@
 //region Import libraries
 const mongoose = require('mongoose');
-const config = require('config');
+import config = require('config');
+//endregion
+
+//region Import types
+import { StatusOfOrder } from 'commonTypes';
 //endregion
 
 //region Import default data
-const { defaultEquipment, defaultDamage } = require('./defaultData');
+import defaultData from './defaultData';
 //endregion
 
 //region Import plugins
@@ -12,12 +16,13 @@ const { getAutoIncrementPlugin } = require('..');
 //endregion
 
 //region statusesOfOrder
-const statusesOfOrder = config.get('Customer.statusesOfOrder');
+const statusesOfOrder: Array<StatusOfOrder> = config.get('Customer.statusesOfOrder');
 //endregion
 
 //region Validators
-const validateDate = value => value.valueOf() <= new Date().valueOf();
-const validateStatus = value => !!statusesOfOrder.some(status => status.id === value);
+const validateDate = (value: Date) => value.valueOf() <= new Date().valueOf();
+const validateStatus = (value: number): boolean =>
+  !!statusesOfOrder.some((status: StatusOfOrder): boolean => status.id === value);
 //endregion
 
 //region orderSchema
@@ -54,12 +59,12 @@ const orderSchema = new mongoose.Schema(
     equipment: {
       type: Array,
       required: true,
-      default: defaultEquipment,
+      default: defaultData.defaultEquipment,
     },
     damage: {
       type: Array,
       required: true,
-      default: defaultDamage,
+      default: defaultData.defaultDamage,
     },
     comment: {
       type: String,

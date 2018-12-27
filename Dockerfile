@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:lts
 
 WORKDIR /app
 
@@ -9,3 +9,5 @@ RUN \
     npm install
 
 COPY . /app
+
+RUN npm run build:prod

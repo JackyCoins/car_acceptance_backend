@@ -2,8 +2,8 @@
 
 ### Production
 ```
-docker build -t car_acceptance_backend .
-docker run --rm -it -p 8080:8080 -e "NODE_ENV=production" car_acceptance_backend
+docker build -t rusanovnd/car_acceptance_backend:latest .
+docker-compose up --build web-prod
 ```
 ### Develop
 Run to data base:
@@ -12,7 +12,7 @@ docker-compose up --build mongo
 ```
 Run to develop the application:
 ```
-docker-compose up --build web
+./bin/start-dev.sh
 ```
 Run to test:
 ```
@@ -31,7 +31,7 @@ chmod +x ./bin/deploy.sh
 ```
 
 ```
-./bin/deploy
+./bin/deploy.sh
 ```
 
 
